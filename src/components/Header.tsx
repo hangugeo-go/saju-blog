@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const navLinks = [
-  { href: '/', label: '홈' },
-  { href: '/blog', label: '블로그' },
-  { href: '/about', label: '소개' },
-  { href: '/contact', label: '문의' },
+  { href: '/', label: '홈', highlight: false },
+  { href: '/blog', label: '블로그', highlight: false },
+  { href: '/compatibility', label: '궁합분석', highlight: true },
+  { href: '/about', label: '소개', highlight: false },
+  { href: '/contact', label: '문의', highlight: false },
 ]
 
 export default function Header() {
@@ -29,7 +30,11 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors"
+              className={
+                link.highlight
+                  ? 'bg-indigo-600 text-white font-semibold text-sm px-3 py-1.5 rounded-full hover:bg-indigo-700 transition-colors'
+                  : 'text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors'
+              }
             >
               {link.label}
             </Link>

@@ -96,19 +96,21 @@ export default function Home() {
           </section>
         )}
 
-        {/* CTA 배너 */}
-        <section className="bg-indigo-50 border border-indigo-100 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-gray-800 mb-2">
-            사주 분석이 궁금하신가요?
+        {/* CTA 배너 — 궁합분석 서비스 */}
+        <section className="bg-gradient-to-br from-indigo-950 via-indigo-900 to-purple-900 rounded-2xl p-8 text-center">
+          <div className="text-3xl mb-3">☯</div>
+          <h3 className="text-xl font-bold text-white mb-2">
+            역학 궁합 분석 서비스 출시!
           </h3>
-          <p className="text-gray-500 text-sm mb-4">
-            AI 기반 사주 분석 서비스를 준비 중입니다. 출시 알림을 받아보세요.
+          <p className="text-indigo-200 text-sm mb-5 max-w-md mx-auto">
+            사주팔자 · 자미두수 · 서양 점성술을 통합한 궁합 분석을 지금 바로 체험하세요.
+            연애, 직장, 부모-자녀 관계 모두 지원합니다.
           </p>
           <Link
-            href="/contact"
-            className="bg-indigo-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-indigo-700 transition-colors inline-block"
+            href="/compatibility"
+            className="bg-white text-indigo-900 font-bold px-8 py-3 rounded-full hover:bg-indigo-50 transition-colors inline-block"
           >
-            출시 알림 신청
+            궁합 분석 시작하기 →
           </Link>
         </section>
       </div>
