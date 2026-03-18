@@ -34,10 +34,10 @@ export default function Footer() {
               <li><Link href="/privacy" className="hover:text-white transition-colors">개인정보처리방침</Link></li>
               <li>
                 <a
-                  href="mailto:contact@sajulab.com"
+                  href="mailto:maisondesisy@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  contact@sajulab.com
+                  maisondesisy@gmail.com
                 </a>
               </li>
             </ul>
