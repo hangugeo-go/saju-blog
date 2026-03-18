@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://sajulab.com/sitemap.xml',
+    sitemap: 'https://saju-blog-two.vercel.app/sitemap.xml',
   }
 }
