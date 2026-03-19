@@ -24,6 +24,8 @@ export default function Header() {
   const navLinks = [
     { href: '/',              label: t('home'),    highlight: false },
     { href: '/blog',          label: t('blog'),    highlight: false },
+    { href: '/saju',          label: t('saju'),    highlight: false },
+    { href: '/ziwei',         label: t('ziwei'),   highlight: false },
     { href: '/compatibility', label: t('compat'),  highlight: true  },
     { href: '/about',         label: t('about'),   highlight: false },
     { href: '/contact',       label: t('contact'), highlight: false },

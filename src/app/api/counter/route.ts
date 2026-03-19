@@ -3,6 +3,9 @@ import { supabase } from '@/lib/supabase'
 
 // GET /api/counter — 현재 카운트 반환
 export async function GET() {
+  if (!supabase) {
+    return NextResponse.json({ count: 52341 })
+  }
   const { data, error } = await supabase
     .from('analysis_counter')
     .select('count')
@@ -17,6 +20,9 @@ export async function GET() {
 
 // POST /api/counter — 카운트 +1 후 반환
 export async function POST() {
+  if (!supabase) {
+    return NextResponse.json({ count: null }, { status: 500 })
+  }
   const { data, error } = await supabase.rpc('increment_counter')
 
   if (error || !data) {
