@@ -133,8 +133,8 @@ export default function ContactPage() {
 
       <div className="mt-8 text-center text-sm text-gray-400">
         <p>{t('direct_email')}</p>
-        <a href="mailto:contact@sajulab.com" className="text-indigo-500 hover:text-indigo-700">
-          contact@sajulab.com
+        <a href="mailto:maisondesisy@gmail.com" className="text-indigo-500 hover:text-indigo-700">
+          maisondesisy@gmail.com
         </a>
       </div>
     </div>

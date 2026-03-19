@@ -63,7 +63,7 @@ export default function PrivacyPage() {
         <section>
           <h2>7. 문의</h2>
           <ul>
-            <li>이메일: contact@sajulab.com</li>
+            <li>이메일: maisondesisy@gmail.com</li>
           </ul>
         </section>
       </div>

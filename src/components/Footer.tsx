@@ -34,8 +34,8 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/privacy" className="hover:text-white transition-colors">{t('privacy')}</Link></li>
               <li>
-                <a href="mailto:contact@sajulab.com" className="hover:text-white transition-colors">
-                  contact@sajulab.com
+                <a href="mailto:maisondesisy@gmail.com" className="hover:text-white transition-colors">
+                  maisondesisy@gmail.com
                 </a>
               </li>
             </ul>
