@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import MobileTabBar from '@/components/MobileTabBar'
 import '../globals.css'
 
 export function generateStaticParams() {
@@ -87,8 +88,9 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className={`${notoSansKR.className} bg-gray-50 text-gray-900 antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
           <Footer />
+          <MobileTabBar />
         </NextIntlClientProvider>
       </body>
     </html>
