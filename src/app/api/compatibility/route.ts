@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error }, { status: 400 })
     }
 
-    const validTypes = ['romantic', 'work', 'parent_child']
+    const validTypes = ['romantic', 'work', 'parent_child', 'friend']
     if (!validTypes.includes(relationType)) {
       return NextResponse.json({ success: false, error: '유효하지 않은 관계 유형입니다.' }, { status: 400 })
     }

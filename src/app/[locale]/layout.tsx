@@ -76,6 +76,13 @@ export default async function LocaleLayout({ children, params }: Props) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
           crossOrigin="anonymous"
         /> */}
+        {/* Kakao JavaScript SDK */}
+        <script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+          integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+          crossOrigin="anonymous"
+          async
+        />
       </head>
       <body className={`${notoSansKR.className} bg-gray-50 text-gray-900 antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>

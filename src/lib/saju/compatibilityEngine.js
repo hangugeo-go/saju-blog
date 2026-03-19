@@ -26,14 +26,16 @@ const {
 const WEIGHTS = {
   romantic:     { saju: 0.40, ziwei: 0.20, astrology: 0.40 },
   work:         { saju: 0.50, ziwei: 0.30, astrology: 0.20 },
-  parent_child: { saju: 0.30, ziwei: 0.30, astrology: 0.40 }
+  parent_child: { saju: 0.30, ziwei: 0.30, astrology: 0.40 },
+  friend:       { saju: 0.35, ziwei: 0.30, astrology: 0.35 }
 };
 
 // MBTI 포함 가중치 (MBTI 제공 시)
 const WEIGHTS_WITH_MBTI = {
   romantic:     { saju: 0.35, ziwei: 0.15, astrology: 0.35, mbti: 0.15 },
   work:         { saju: 0.40, ziwei: 0.25, astrology: 0.15, mbti: 0.20 },
-  parent_child: { saju: 0.25, ziwei: 0.25, astrology: 0.30, mbti: 0.20 }
+  parent_child: { saju: 0.25, ziwei: 0.25, astrology: 0.30, mbti: 0.20 },
+  friend:       { saju: 0.30, ziwei: 0.20, astrology: 0.25, mbti: 0.25 }
 };
 
 /**

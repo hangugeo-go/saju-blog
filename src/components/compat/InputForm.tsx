@@ -28,7 +28,8 @@ const MBTI_TYPES = [
 const REL_TYPES = [
   { value: 'romantic',     label: '남녀 궁합',      icon: '♥', desc: '연인·부부 관계 궁합 분석' },
   { value: 'work',         label: '직장 상하 궁합',  icon: '⚖', desc: '상사-부하, 동업자 관계' },
-  { value: 'parent_child', label: '부모-자녀 궁합',  icon: '☯', desc: '부모와 자녀의 관계 역학' }
+  { value: 'parent_child', label: '부모-자녀 궁합',  icon: '☯', desc: '부모와 자녀의 관계 역학' },
+  { value: 'friend',       label: '친구 궁합',       icon: '🤝', desc: '친구·동료 우정 분석' },
 ];
 
 function PersonForm({ label, data, onChange }) {
@@ -284,7 +285,7 @@ export default function InputForm({ onSubmit, initialData }) {
       {/* 관계 유형 선택 */}
       <div className="section-card">
         <div className="section-title">관계 유형 선택</div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {REL_TYPES.map(rt => (
             <button
               key={rt.value}
@@ -321,13 +322,15 @@ export default function InputForm({ onSubmit, initialData }) {
 
       {/* 가중치 안내 */}
       <div className="bg-ink-100 rounded-lg p-4 text-xs text-ink-500">
-        <p className="font-medium text-ink-600 mb-1">분석 엔진 가중치 ({relType === 'romantic' ? '남녀 궁합' : relType === 'work' ? '직장 궁합' : '자녀 궁합'}{personA.mbti && personB.mbti ? ' · MBTI 포함' : ''})</p>
+        <p className="font-medium text-ink-600 mb-1">분석 엔진 가중치 ({relType === 'romantic' ? '남녀 궁합' : relType === 'work' ? '직장 궁합' : relType === 'friend' ? '친구 궁합' : '자녀 궁합'}{personA.mbti && personB.mbti ? ' · MBTI 포함' : ''})</p>
         {relType === 'romantic'     && !personA.mbti && !personB.mbti && <p>사주(일지합충·조후) 40% · 서양점성술(금성·화성·달) 40% · 자미두수(부처궁) 20%</p>}
         {relType === 'work'         && !personA.mbti && !personB.mbti && <p>사주(격국·십성) 50% · 자미두수(노복·천이궁) 30% · 점성술(수성·토성) 20%</p>}
         {relType === 'parent_child' && !personA.mbti && !personB.mbti && <p>점성술(4·5하우스·달) 40% · 자미두수(자녀궁) 30% · 사주(식상·시주) 30%</p>}
+        {relType === 'friend'       && !personA.mbti && !personB.mbti && <p>사주(일간오행·십성) 35% · 서양점성술(달·목성) 35% · 자미두수(교우궁) 30%</p>}
         {relType === 'romantic'     && personA.mbti && personB.mbti && <p>사주 35% · 점성술 35% · 자미두수 15% · MBTI 15%</p>}
         {relType === 'work'         && personA.mbti && personB.mbti && <p>사주 40% · 자미두수 25% · MBTI 20% · 점성술 15%</p>}
         {relType === 'parent_child' && personA.mbti && personB.mbti && <p>점성술 30% · MBTI 20% · 사주 25% · 자미두수 25%</p>}
+        {relType === 'friend'       && personA.mbti && personB.mbti && <p>사주 30% · 점성술 25% · 자미두수 20% · MBTI 25%</p>}
       </div>
 
       {/* 제출 */}
