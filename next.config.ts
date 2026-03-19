@@ -1,18 +1,13 @@
 import type { NextConfig } from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
-  // 정적 내보내기 (Vercel에서는 필요없지만 CDN 배포 시 활성화)
-  // output: 'export',
-
-  // 이미지 최적화
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-
-  // 압축
   compress: true,
-
-  // 보안 헤더
   async headers() {
     return [
       {
@@ -28,4 +23,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+export default withNextIntl(nextConfig)

@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+
+// App Router Route Handler — body size is handled by Next.js defaults (4MB)
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { analyzeCompatibility } = require('@/lib/saju/compatibilityEngine')
 // eslint-disable-next-line @typescript-eslint/no-require-imports

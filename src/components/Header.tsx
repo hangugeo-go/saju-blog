@@ -1,31 +1,91 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname, useRouter } from '@/i18n/navigation'
+import { routing } from '@/i18n/routing'
 
-const navLinks = [
-  { href: '/', label: '홈', highlight: false },
-  { href: '/blog', label: '블로그', highlight: false },
-  { href: '/compatibility', label: '궁합분석', highlight: true },
-  { href: '/about', label: '소개', highlight: false },
-  { href: '/contact', label: '문의', highlight: false },
-]
+const LOCALE_FLAGS: Record<string, string> = {
+  ko: '🇰🇷', en: '🇺🇸', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸',
+}
+const LOCALE_NAMES: Record<string, string> = {
+  ko: '한국어', en: 'English', ja: '日本語', zh: '中文', es: 'Español',
+}
 
 export default function Header() {
+  const t        = useTranslations('nav')
+  const locale   = useLocale()
+  const pathname = usePathname()
+  const router   = useRouter()
+
   const [menuOpen, setMenuOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+
+  const navLinks = [
+    { href: '/',              label: t('home'),    highlight: false },
+    { href: '/blog',          label: t('blog'),    highlight: false },
+    { href: '/compatibility', label: t('compat'),  highlight: true  },
+    { href: '/about',         label: t('about'),   highlight: false },
+    { href: '/contact',       label: t('contact'), highlight: false },
+  ]
+
+  function switchLocale(next: string) {
+    router.replace(pathname, { locale: next })
+    setLangOpen(false)
+    setMenuOpen(false)
+  }
 
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl">☯</span>
-          <span className="font-bold text-xl text-gray-800 tracking-tight">
-            사주역학연구소
-          </span>
-        </Link>
+      <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+
+        {/* Left: Lang picker + Logo */}
+        <div className="flex items-center gap-3">
+          {/* Language dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-800 border border-gray-200 rounded-md px-2 py-1 transition-colors"
+            >
+              <span>{LOCALE_FLAGS[locale]}</span>
+              <span className="font-medium uppercase">{locale}</span>
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {langOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setLangOpen(false)} />
+                <div className="absolute left-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[130px] overflow-hidden">
+                  {routing.locales.map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => switchLocale(loc)}
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-indigo-50 transition-colors text-left ${
+                        loc === locale ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-700'
+                      }`}
+                    >
+                      <span>{LOCALE_FLAGS[loc]}</span>
+                      <span>{LOCALE_NAMES[loc]}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-2xl">☯</span>
+            <span className="font-bold text-xl text-gray-800 tracking-tight hidden sm:block">
+              사주역학연구소
+            </span>
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -41,11 +101,11 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile menu button */}
+        {/* Mobile hamburger */}
         <button
           className="md:hidden text-gray-600 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="메뉴 열기"
+          onClick={() => { setMenuOpen(!menuOpen); setLangOpen(false) }}
+          aria-label="메뉴"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (

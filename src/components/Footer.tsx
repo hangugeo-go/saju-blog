@@ -1,6 +1,9 @@
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 export default function Footer() {
+  const t  = useTranslations('footer')
+  const tn = useTranslations('nav')
   const year = new Date().getFullYear()
 
   return (
@@ -12,32 +15,27 @@ export default function Footer() {
               <span className="text-xl">☯</span>
               <span className="text-white font-bold text-base">사주역학연구소</span>
             </div>
-            <p className="text-sm leading-relaxed">
-              명리학과 사주역학의 학문적 이해를 돕는 전문 콘텐츠를 제공합니다.
-              동양철학의 지혜를 현대적 시각으로 풀어드립니다.
-            </p>
+            <p className="text-sm leading-relaxed">{t('tagline')}</p>
           </div>
 
           <div>
-            <h3 className="text-white font-semibold text-sm mb-3">빠른 메뉴</h3>
+            <h3 className="text-white font-semibold text-sm mb-3">{t('quick_menu')}</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-white transition-colors">홈</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition-colors">블로그</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">소개</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">문의</Link></li>
+              <li><Link href="/"              className="hover:text-white transition-colors">{tn('home')}</Link></li>
+              <li><Link href="/blog"          className="hover:text-white transition-colors">{tn('blog')}</Link></li>
+              <li><Link href="/compatibility" className="hover:text-white transition-colors">{tn('compat')}</Link></li>
+              <li><Link href="/about"         className="hover:text-white transition-colors">{tn('about')}</Link></li>
+              <li><Link href="/contact"       className="hover:text-white transition-colors">{tn('contact')}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white font-semibold text-sm mb-3">정보</h3>
+            <h3 className="text-white font-semibold text-sm mb-3">{t('info')}</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/privacy" className="hover:text-white transition-colors">개인정보처리방침</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">{t('privacy')}</Link></li>
               <li>
-                <a
-                  href="mailto:maisondesisy@gmail.com"
-                  className="hover:text-white transition-colors"
-                >
-                  maisondesisy@gmail.com
+                <a href="mailto:contact@sajulab.com" className="hover:text-white transition-colors">
+                  contact@sajulab.com
                 </a>
               </li>
             </ul>
@@ -45,10 +43,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-6 text-xs text-center">
-          <p>© {year} 사주역학연구소. All rights reserved.</p>
-          <p className="mt-1 text-gray-600">
-            본 사이트의 콘텐츠는 학술적·교육적 목적으로 제공됩니다.
-          </p>
+          <p>{t('copyright', { year })}</p>
+          <p className="mt-1 text-gray-600">{t('disclaimer')}</p>
         </div>
       </div>
     </footer>

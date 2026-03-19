@@ -2,16 +2,18 @@ import { getPostBySlug, getAllPosts } from '@/lib/posts'
 import { markdownToHtml } from '@/lib/markdownToHtml'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { AdInContent } from '@/components/AdSense'
+import { Link } from '@/i18n/navigation'
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string; locale: string }>
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts()
-  return posts.map((post) => ({ slug: post.slug }))
+  const posts   = getAllPosts()
+  const locales = ['ko', 'en', 'ja', 'zh', 'es']
+  return locales.flatMap((locale) =>
+    posts.map((post) => ({ locale, slug: post.slug }))
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -29,11 +31,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       tags: post.tags,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: post.description,
-    },
   }
 }
 
@@ -44,7 +41,6 @@ export default async function BlogPostPage({ params }: Props) {
 
   const htmlContent = markdownToHtml(post.content)
 
-  // JSON-LD structured data for SEO
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -52,10 +48,6 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.description,
     datePublished: post.date,
     author: {
-      '@type': 'Organization',
-      name: '사주역학연구소',
-    },
-    publisher: {
       '@type': 'Organization',
       name: '사주역학연구소',
     },
@@ -116,29 +108,26 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Top Ad */}
-        {/* <AdInContent /> */}
-
         {/* Content */}
         <div
           className="prose max-w-none"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
 
-        {/* Mid Ad */}
-        {/* <AdInContent /> */}
-
-        {/* Footer */}
+        {/* CTA Footer */}
         <div className="mt-12 pt-8 border-t border-gray-100">
           <div className="bg-indigo-50 rounded-xl p-6 text-center">
-            <p className="text-gray-700 font-medium mb-3">
-              더 많은 사주역학 지식을 원하신다면?
+            <p className="text-gray-700 font-medium mb-2">
+              두 사람의 역학적 궁합이 궁금하신가요?
+            </p>
+            <p className="text-gray-500 text-sm mb-4">
+              사주팔자·자미두수·점성술 통합 궁합 분석 서비스
             </p>
             <Link
-              href="/blog"
+              href="/compatibility"
               className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition-colors inline-block"
             >
-              다른 글 보기
+              궁합 분석하기 →
             </Link>
           </div>
         </div>
