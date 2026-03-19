@@ -239,6 +239,24 @@ export default function ResultDisplay({ data }) {
         <AstrologyAspectsCard synastry={astrology?.synastry} />
       )}
 
+      {/* ── 크로스 CTA ────────────────────────────────────────────── */}
+      <div className="grid grid-cols-2 gap-3 mt-4">
+        <a href="/saju" className="flex items-center gap-2 bg-ink-900 hover:bg-ink-700 text-white rounded-lg px-4 py-3 text-sm transition-colors">
+          <span className="text-xl">☯</span>
+          <div>
+            <p className="font-semibold text-xs">사주팔자 분석</p>
+            <p className="text-ink-400 text-xs mt-0.5">일주·오행·용신 분석</p>
+          </div>
+        </a>
+        <a href="/ziwei" className="flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white rounded-lg px-4 py-3 text-sm transition-colors">
+          <span className="text-xl">✦</span>
+          <div>
+            <p className="font-semibold text-xs">자미두수 명반</p>
+            <p className="text-purple-300 text-xs mt-0.5">12궁 배치·주성 해석</p>
+          </div>
+        </a>
+      </div>
+
       {/* ── 면책 고지 ─────────────────────────────────────────────── */}
       <div className="bg-ink-100 rounded-lg p-4 text-xs text-ink-500 mt-4">
         <p className="font-medium mb-1">분석 한계 고지</p>

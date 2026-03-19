@@ -20,15 +20,18 @@ export default function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
+  const [analysisOpen, setAnalysisOpen] = useState(false)
 
-  const navLinks = [
-    { href: '/',              label: t('home'),    highlight: false },
-    { href: '/blog',          label: t('blog'),    highlight: false },
-    { href: '/saju',          label: t('saju'),    highlight: false },
-    { href: '/ziwei',         label: t('ziwei'),   highlight: false },
-    { href: '/compatibility', label: t('compat'),  highlight: true  },
-    { href: '/about',         label: t('about'),   highlight: false },
-    { href: '/contact',       label: t('contact'), highlight: false },
+  const mainLinks = [
+    { href: '/',      label: t('home'),    highlight: false },
+    { href: '/blog',  label: t('blog'),    highlight: false },
+    { href: '/about', label: t('about'),   highlight: false },
+    { href: '/contact', label: t('contact'), highlight: false },
+  ]
+  const analysisLinks = [
+    { href: '/saju',          label: t('saju'),   highlight: false },
+    { href: '/ziwei',         label: t('ziwei'),  highlight: false },
+    { href: '/compatibility', label: t('compat'), highlight: true  },
   ]
 
   function switchLocale(next: string) {
@@ -88,16 +91,44 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-5">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={
-                link.highlight
-                  ? 'bg-indigo-600 text-white font-semibold text-sm px-3 py-1.5 rounded-full hover:bg-indigo-700 transition-colors'
-                  : 'text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors'
-              }
+          {mainLinks.slice(0, 2).map((link) => (
+            <Link key={link.href} href={link.href} className="text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors">
+              {link.label}
+            </Link>
+          ))}
+
+          {/* 분석 dropdown */}
+          <div className="relative" onMouseLeave={() => setAnalysisOpen(false)}>
+            <button
+              onMouseEnter={() => setAnalysisOpen(true)}
+              onClick={() => setAnalysisOpen(!analysisOpen)}
+              className="flex items-center gap-1 text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors"
             >
+              분석
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {analysisOpen && (
+              <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[140px] overflow-hidden">
+                {analysisLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setAnalysisOpen(false)}
+                    className={`block px-4 py-2.5 text-sm hover:bg-indigo-50 transition-colors ${
+                      link.highlight ? 'text-indigo-700 font-semibold' : 'text-gray-700'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {mainLinks.slice(2).map((link) => (
+            <Link key={link.href} href={link.href} className="text-gray-600 hover:text-indigo-600 font-medium text-sm transition-colors">
               {link.label}
             </Link>
           ))}
@@ -122,13 +153,39 @@ export default function Header() {
       {/* Mobile Nav */}
       {menuOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 text-sm font-medium"
-              onClick={() => setMenuOpen(false)}
-            >
+          {mainLinks.slice(0, 2).map((link) => (
+            <Link key={link.href} href={link.href} className="block px-4 py-3 text-gray-700 hover:bg-gray-50 text-sm font-medium" onClick={() => setMenuOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
+
+          {/* 분석 그룹 */}
+          <button
+            onClick={() => setAnalysisOpen(!analysisOpen)}
+            className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-gray-50 text-sm font-medium"
+          >
+            <span>분석</span>
+            <svg className={`w-4 h-4 transition-transform ${analysisOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {analysisOpen && (
+            <div className="bg-gray-50 border-t border-gray-100">
+              {analysisLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => { setMenuOpen(false); setAnalysisOpen(false) }}
+                  className={`block pl-8 pr-4 py-2.5 text-sm ${link.highlight ? 'text-indigo-700 font-semibold' : 'text-gray-600'} hover:bg-indigo-50`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {mainLinks.slice(2).map((link) => (
+            <Link key={link.href} href={link.href} className="block px-4 py-3 text-gray-700 hover:bg-gray-50 text-sm font-medium" onClick={() => setMenuOpen(false)}>
               {link.label}
             </Link>
           ))}
