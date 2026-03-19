@@ -78,7 +78,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         /> */}
       </head>
       <body className={`${notoSansKR.className} bg-gray-50 text-gray-900 antialiased`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />

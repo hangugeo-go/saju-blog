@@ -280,7 +280,7 @@ export default function InputForm({ onSubmit, initialData }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 text-gray-900">
       {/* 관계 유형 선택 */}
       <div className="section-card">
         <div className="section-title">관계 유형 선택</div>
