@@ -78,7 +78,8 @@ export default function DailyJournalWidget() {
       })
       const json = await res.json()
       if (!json.success) throw new Error()
-      const pick = (p: Record<string, unknown>) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pick = (p: any): StoredPillar => ({
         stem: p.stem, branch: p.branch,
         stemKr: p.stemKr, branchKr: p.branchKr,
         stemIdx: p.stemIdx, branchIdx: p.branchIdx,
