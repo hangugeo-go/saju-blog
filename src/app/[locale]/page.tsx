@@ -4,6 +4,7 @@ import { getAllPosts } from '@/lib/posts'
 import BlogCard from '@/components/BlogCard'
 import CompatibilityApp from '@/components/compat/CompatibilityApp'
 import TodayPillarWidget from '@/components/TodayPillarWidget'
+import DailyJournalWidget from '@/components/DailyJournalWidget'
 
 const CATEGORY_KEYS = [
   { key: 'basics',        emoji: '📚', name: '사주 기초' },
@@ -27,9 +28,10 @@ export default function Home() {
       <CompatibilityApp embeddedMode={true} />
 
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* 오늘의 일진 위젯 */}
-        <section className="mb-10">
+        {/* 오늘의 일진 위젯 + 일진 기록 */}
+        <section className="mb-10 space-y-3">
           <TodayPillarWidget />
+          <DailyJournalWidget />
         </section>
 
         {/* 카테고리 */}
