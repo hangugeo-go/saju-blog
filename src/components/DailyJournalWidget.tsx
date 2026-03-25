@@ -26,9 +26,19 @@ interface JournalEntry {
   note: string
 }
 
+interface StoredPillar {
+  stem: string; branch: string;
+  stemKr: string; branchKr: string;
+  stemIdx: number; branchIdx: number;
+}
+
 interface UserSaju {
   birth: { year: number; month: number; day: number }
   dayMaster: { stemKr: string; stem: string; elementIdx: number; element: string }
+  pillars?: {
+    year: StoredPillar; month: StoredPillar; day: StoredPillar;
+    hour: StoredPillar | null;
+  }
 }
 
 export default function DailyJournalWidget() {
@@ -68,6 +78,11 @@ export default function DailyJournalWidget() {
       })
       const json = await res.json()
       if (!json.success) throw new Error()
+      const pick = (p: Record<string, unknown>) => ({
+        stem: p.stem, branch: p.branch,
+        stemKr: p.stemKr, branchKr: p.branchKr,
+        stemIdx: p.stemIdx, branchIdx: p.branchIdx,
+      })
       const saju: UserSaju = {
         birth: { year: +birthForm.year, month: +birthForm.month, day: +birthForm.day },
         dayMaster: {
@@ -75,6 +90,12 @@ export default function DailyJournalWidget() {
           stem:       json.data.dayMaster.stem,
           elementIdx: json.data.dayMaster.elementIdx,
           element:    json.data.dayMaster.element,
+        },
+        pillars: {
+          year:  pick(json.data.pillars.year),
+          month: pick(json.data.pillars.month),
+          day:   pick(json.data.pillars.day),
+          hour:  json.data.pillars.hour ? pick(json.data.pillars.hour) : null,
         },
       }
       localStorage.setItem('journal_saju', JSON.stringify(saju))

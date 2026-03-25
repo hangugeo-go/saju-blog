@@ -24,15 +24,18 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero = 궁합 입력 폼 직접 삽입 */}
-      <CompatibilityApp embeddedMode={true} />
-
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* 오늘의 일진 위젯 + 일진 기록 */}
-        <section className="mb-10 space-y-3">
+      {/* 오늘의 일진 위젯 + 일진 기록 — 최상단 */}
+      <div className="max-w-4xl mx-auto px-4 pt-6 pb-2">
+        <section className="space-y-3">
           <TodayPillarWidget />
           <DailyJournalWidget />
         </section>
+      </div>
+
+      {/* Hero = 궁합 입력 폼 */}
+      <CompatibilityApp embeddedMode={true} />
+
+      <div className="max-w-4xl mx-auto px-4 py-12">
 
         {/* 카테고리 */}
         <section className="mb-14">
