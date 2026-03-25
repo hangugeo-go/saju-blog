@@ -407,6 +407,26 @@ function getLunarDayApprox(jd) {
 }
 
 /**
+ * 실제 신월(朔) 시점을 Newton 방법으로 정밀 계산
+ * 달의 황경 - 태양의 황경 = 0 이 되는 JD를 찾는다.
+ * @param {number} approxJD - 신월 근사 JD (평균 삭망월 계산값)
+ * @returns {number} 실제 신월 JD
+ */
+function findNewMoon(approxJD) {
+  let jd = approxJD;
+  for (let i = 0; i < 50; i++) {
+    const sunLon  = sunApparentLongitude(jd);
+    const moonLon = moonLongitude(jd);
+    let diff = (moonLon - sunLon + 360) % 360;
+    if (diff > 180) diff -= 360; // -180 ~ +180 범위
+    if (Math.abs(diff) < 0.0001) break; // 수렴 (오차 < 0.0001° ≈ 수초)
+    // 달은 태양보다 하루 약 12.19° 빠름
+    jd -= diff / 12.19;
+  }
+  return jd;
+}
+
+/**
  * 삭망월 구간 [nmStart, nmEnd) 안에 중기(中氣, 30° 배수 황경)가 있으면 true
  * 중기 목록: 춘분(0°), 곡우(30°), 소만(60°), 하지(90°), 대서(120°), 처서(150°),
  *           추분(180°), 상강(210°), 소설(240°), 동지(270°), 대한(300°), 우수(330°)
@@ -426,15 +446,19 @@ function hasZhongqi(nmStart, nmEnd) {
 }
 
 /**
- * 해당 음력연도의 춘절(설날) JD 추정
- * 전년 동지 후 두 번째 삭망 기준
+ * 해당 음력연도의 춘절(설날) JD 계산
+ * 전년 동지 후 두 번째 신월(朔) — 실제 신월 시점으로 정밀 계산
  */
 function estimateCNY(year) {
   const approxWS = gregorianToJD(year - 1, 12, 21);
   const winterSolstice = findSolarTermJD(270, approxWS);
   const cycles = (winterSolstice - NEW_MOON_REF_JD) / SYNODIC_MONTH;
-  const firstNM = NEW_MOON_REF_JD + Math.ceil(cycles) * SYNODIC_MONTH;
-  return firstNM + SYNODIC_MONTH;
+  // 동지 직후 첫 신월 근사값
+  const approxFirstNM = NEW_MOON_REF_JD + Math.ceil(cycles) * SYNODIC_MONTH;
+  // 실제 신월로 보정
+  const firstNM = findNewMoon(approxFirstNM);
+  // 두 번째 신월 = 설날
+  return findNewMoon(firstNM + SYNODIC_MONTH);
 }
 
 /**
@@ -489,7 +513,8 @@ function lunarToSolar(lunarYear, lunarMonth, lunarDay, isLeapMonth = false) {
   let foundJD = null;
 
   for (let i = 0; i < 15; i++) {
-    const nextNm = nm + SYNODIC_MONTH;
+    // 다음 신월: 평균 삭망월로 근사 후 실제 신월로 정밀 보정
+    const nextNm = findNewMoon(nm + SYNODIC_MONTH);
     const isLeap = !hasZhongqi(nm, nextNm);
     if (!isLeap) currentMonthNum++; // 정달: 번호 증가
 
@@ -511,11 +536,14 @@ function lunarToSolar(lunarYear, lunarMonth, lunarDay, isLeapMonth = false) {
 
   if (foundJD === null) {
     // 윤달이 없는 해에 윤달 입력 → 해당 월 정달로 폴백
-    foundJD = cny + (lunarMonth - 1) * SYNODIC_MONTH;
+    foundJD = findNewMoon(cny + (lunarMonth - 1) * SYNODIC_MONTH);
   }
 
-  // 음력 일 가산 + 정오 보정 (자정 경계 오차 ±1일 방지)
-  const targetJD = foundJD + (lunarDay - 1) + 0.5;
+  // 신월 JD를 KST 기준 달력일로 정규화 후 일 수 가산
+  // (신월 시각의 소수부를 제거해 자정 경계 오차 ±1일 방지)
+  const kstJD = foundJD + 9 / 24; // UTC → KST
+  const dayOneInt = Math.floor(kstJD + 0.5); // KST 기준 해당 날의 noon JD (정수)
+  const targetJD = dayOneInt + (lunarDay - 1);
   return jdToGregorian(targetJD);
 }
 
@@ -539,6 +567,7 @@ module.exports = {
   getLunarDayApprox,
   getLunarMonthApprox,
   lunarToSolar,
+  findNewMoon,
   SYNODIC_MONTH,
   NEW_MOON_REF_JD
 };
