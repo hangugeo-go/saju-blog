@@ -19,7 +19,7 @@ function PillarCard({ label, ganzhi, nayin }: { label: string; ganzhi: string; n
     <div className="flex flex-col items-center bg-white border border-ink-200 rounded-lg p-3 min-w-[72px]">
       <span className="text-xs text-ink-400 mb-1">{label}</span>
       <span className="text-2xl font-bold text-ink-800 tracking-widest">{ganzhi}</span>
-      {nayin && <span className="text-xs text-ink-400 mt-1">{nayin}</span>}
+      {/* nayin 숨김: 일반 사용자에게 너무 전문적 */}
     </div>
   )
 }

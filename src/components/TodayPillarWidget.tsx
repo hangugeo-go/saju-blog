@@ -19,11 +19,11 @@ const PRODUCES = [1,2,3,4,0]
 const CONTROLS = [2,3,4,0,1]
 
 function getRelation(myElem: number, todayElem: number) {
-  if (myElem === todayElem) return { text: '비화(比和) — 같은 기운의 날', color: 'text-gray-500' }
-  if (PRODUCES[myElem] === todayElem) return { text: '내가 생(生)하는 날', color: 'text-green-700' }
-  if (PRODUCES[todayElem] === myElem) return { text: '생(生)을 받는 날', color: 'text-indigo-600' }
-  if (CONTROLS[myElem] === todayElem) return { text: '내가 극(克)하는 날', color: 'text-amber-600' }
-  return { text: '극(克)을 받는 날', color: 'text-red-600' }
+  if (myElem === todayElem) return { text: '⚖ 나와 같은 기운, 안정적인 하루예요', color: 'text-gray-500' }
+  if (PRODUCES[myElem] === todayElem) return { text: '🌱 내 에너지를 나눠주는 날이에요', color: 'text-green-700' }
+  if (PRODUCES[todayElem] === myElem) return { text: '✨ 오늘 기운이 나를 도와줘요', color: 'text-indigo-600' }
+  if (CONTROLS[myElem] === todayElem) return { text: '💪 내가 주도적으로 이끄는 날이에요', color: 'text-amber-600' }
+  return { text: '⚠ 조심하고 신중하게 행동하는 날이에요', color: 'text-red-600' }
 }
 
 // ── 타일 컴포넌트 ──────────────────────────────────────

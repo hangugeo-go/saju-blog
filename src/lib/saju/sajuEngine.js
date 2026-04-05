@@ -264,7 +264,7 @@ function calcSaju(birthData) {
       monthBranch,
       needs: johuNeeds.map(i => ELEMENTS_KR[i]),
       strength: johuStrength,
-      comment: johuStrength >= 3 ? '조후 양호' : (johuStrength >= 1 ? '조후 보통' : '조후 부족 (용신 필요)')
+      comment: johuStrength >= 3 ? '기운이 잘 채워져 있어요 👍' : (johuStrength >= 1 ? '기운이 어느 정도 있어요' : '이 기운을 보충하면 도움이 돼요')
     },
     kongwang: kongwang.map(b => BRANCHES_KR[b]),
     timeCorrection: corrected,
