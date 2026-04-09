@@ -22,23 +22,23 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   metadataBase: new URL('https://sajulab.com'),
   title: {
-    default: '사주역학연구소 - 명리학으로 보는 삶의 지혜',
-    template: '%s | 사주역학연구소',
+    default: 'Saju Lab - 명리학으로 보는 삶의 지혜',
+    template: '%s | Saju Lab',
   },
   description:
     '사주역학과 명리학의 학문적 이해를 돕는 전문 블로그. 천간지지, 오행, 십성, 대운 등 사주의 기초부터 심화까지 체계적으로 알아보세요.',
   keywords: ['사주', '명리학', '사주역학', '운세', '천간지지', '오행', '십성', '대운', '사주풀이'],
-  authors: [{ name: '사주역학연구소' }],
+  authors: [{ name: 'Saju Lab' }],
   openGraph: {
     type: 'website',
-    siteName: '사주역학연구소',
-    title: '사주역학연구소 - 명리학으로 보는 삶의 지혜',
+    siteName: 'Saju Lab',
+    title: 'Saju Lab - 명리학으로 보는 삶의 지혜',
     description:
       '사주역학과 명리학의 학문적 이해를 돕는 전문 블로그. 천간지지, 오행, 십성부터 실생활 적용까지.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '사주역학연구소',
+    title: 'Saju Lab',
     description: '명리학으로 보는 삶의 지혜',
   },
   robots: {

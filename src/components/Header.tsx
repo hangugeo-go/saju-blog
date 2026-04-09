@@ -84,7 +84,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl">☯</span>
             <span className="font-bold text-xl text-gray-800 tracking-tight hidden sm:block">
-              사주역학연구소
+              Saju Lab
             </span>
           </Link>
         </div>

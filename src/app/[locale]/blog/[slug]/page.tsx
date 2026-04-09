@@ -49,7 +49,7 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     author: {
       '@type': 'Organization',
-      name: '사주역학연구소',
+      name: 'Saju Lab',
     },
     keywords: post.tags.join(', '),
   }

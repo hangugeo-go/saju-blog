@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
-  description: '사주역학연구소의 개인정보처리방침입니다.',
+  description: 'Saju Lab의 개인정보처리방침입니다.',
 }
 
 export default function PrivacyPage() {
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         <section>
           <h2>1. 개요</h2>
           <p>
-            사주역학연구소(이하 &ldquo;본 사이트&rdquo;)는 이용자의 개인정보를 중요하게 여기며,
+            Saju Lab(이하 &ldquo;본 사이트&rdquo;)는 이용자의 개인정보를 중요하게 여기며,
             개인정보보호법 및 관련 법령을 준수합니다. 본 방침은 본 사이트가 수집하는
             정보의 종류, 이용 방법 및 보호 방법에 대해 설명합니다.
           </p>

@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xl">☯</span>
-              <span className="text-white font-bold text-base">사주역학연구소</span>
+              <span className="text-white font-bold text-base">Saju Lab</span>
             </div>
             <p className="text-sm leading-relaxed">{t('tagline')}</p>
           </div>

@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
           <span style={{ fontSize: '36px' }}>☯</span>
-          <span style={{ fontSize: '20px', color: '#a5b4fc', letterSpacing: '0.05em' }}>사주역학연구소</span>
+          <span style={{ fontSize: '20px', color: '#a5b4fc', letterSpacing: '0.05em' }}>Saju Lab</span>
         </div>
 
         {/* Names */}

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '소개',
-  description: '사주역학연구소는 명리학과 사주역학의 학문적 이해를 돕는 전문 콘텐츠 블로그입니다.',
+  description: 'Saju Lab는 명리학과 사주역학의 학문적 이해를 돕는 전문 콘텐츠 블로그입니다.',
 }
 
 export default function AboutPage() {

@@ -9,7 +9,7 @@
     "ziwei": "자미두수"
   },
   "home": {
-    "hero_title": "사주역학연구소",
+    "hero_title": "Saju Lab",
     "hero_desc": "동양철학의 정수, 명리학을 학문적으로 탐구합니다.\n천간지지부터 대운까지, 삶의 이치를 읽는 법을 알려드립니다.",
     "hero_cta_blog": "글 읽기 시작하기",
     "hero_cta_about": "소개 보기",
@@ -91,9 +91,9 @@
     }
   },
   "about": {
-    "title": "사주역학연구소 소개",
+    "title": "Saju Lab 소개",
     "subtitle": "동양철학의 정수, 명리학을 현대적 시각으로 탐구합니다.",
-    "org_name": "사주역학연구소",
+    "org_name": "Saju Lab",
     "org_desc": "명리학 전문 콘텐츠 블로그",
     "what_we_do_title": "우리가 하는 일",
     "what_we_do": "사주역학은 단순한 점술이 아닙니다. 천간(天干)과 지지(地支), 오행(五行)의 상생과 상극 원리를 통해 자연의 이치와 인간의 삶을 연결하는 깊은 학문입니다. 저희는 이 귀중한 지식을 누구나 이해할 수 있도록 풀어드립니다.",
@@ -137,7 +137,7 @@
     "quick_menu": "빠른 메뉴",
     "info": "정보",
     "privacy": "개인정보처리방침",
-    "copyright": "© {year} 사주역학연구소. All rights reserved.",
+    "copyright": "© {year} Saju Lab. All rights reserved.",
     "disclaimer": "본 사이트의 콘텐츠는 학술적·교육적 목적으로 제공됩니다."
   },
   "lang": {
