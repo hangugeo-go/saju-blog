@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     google: 'GOOGLE_VERIFICATION_CODE',
     // 네이버 서치어드바이저 인증 코드 (발급 후 아래 값 교체)
     other: {
-      'naver-site-verification': 'NAVER_VERIFICATION_CODE',
+      'naver-site-verification': '891932109179ec50a8130e39c46864489269ae3d',
     },
   },
 }
