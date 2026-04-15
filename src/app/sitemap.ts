@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/posts'
 
-const BASE_URL = 'https://sajulab.com'
+const BASE_URL = 'https://saju-blog-two.vercel.app'
 const LOCALES  = ['ko', 'en', 'ja', 'zh', 'es']
 
 const STATIC_PAGES = [

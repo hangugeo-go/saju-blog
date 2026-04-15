@@ -52,6 +52,14 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    // 구글 서치콘솔 인증 코드 (발급 후 아래 값 교체)
+    google: 'GOOGLE_VERIFICATION_CODE',
+    // 네이버 서치어드바이저 인증 코드 (발급 후 아래 값 교체)
+    other: {
+      'naver-site-verification': 'NAVER_VERIFICATION_CODE',
+    },
+  },
 }
 
 type Props = {
